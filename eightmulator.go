@@ -8,10 +8,10 @@ func main() {
 	fmt.Println("Eightmulator Initialized")
 
 	machine := createMachine()
-	machine.loadRom("./INVADERS")
+	machine.loadRom("./PONG")
 
-	//for {
-	opcode := machine.fetchOpcodeAt(0x225)
-	machine.handleOpcode(opcode)
-	//}
+	for {
+		opcode := machine.fetchOpcode()
+		machine.handleOpcode(opcode)
+	}
 }

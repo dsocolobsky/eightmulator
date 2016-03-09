@@ -6,8 +6,16 @@ import (
 )
 
 type Machine struct {
-	memory [4096]uint8
-	pc     uint16
+	memory    [4096]uint8
+	registers [16]uint8
+	stack     [16]uint16
+
+	i  uint16
+	pc uint16
+	sp uint8
+	dt uint8
+	st uint8
+
 	opcode uint16
 }
 

@@ -18,7 +18,7 @@ func (m *Machine) opRet() {
 
 func (m *Machine) opJmp() {
 	m.pc = m.opcode & 0x0FFF
-	fmt.Printf("JMP %x\n", m.pc)
+	fmt.Printf("JMP %d\n", m.pc)
 }
 
 func (m *Machine) opCall() {

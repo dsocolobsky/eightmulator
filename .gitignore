@@ -9,6 +9,7 @@ _obj
 _test
 
 .vscode
+roms
 
 # Architecture specific extensions/prefixes
 *.[568vq]
