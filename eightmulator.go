@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-    fmt.Println("Eightmulator Initialized");
+	fmt.Println("Eightmulator Initialized")
+
+	machine := createMachine()
+	machine.loadRom("./INVADERS")
+
+	for {
+		opcode := machine.fetchOpcode()
+		machine.handleOpcode(opcode)
+	}
 }
