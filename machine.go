@@ -78,7 +78,7 @@ func (m *Machine) handleOpcode(opcode uint16) {
 		m.opSeReg()
 		return
 	case 0x6000:
-		m.opLd()
+		m.opLdVx()
 		return
 	case 0x7000:
 		m.opAdd()

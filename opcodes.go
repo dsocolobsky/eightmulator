@@ -37,8 +37,13 @@ func (m *Machine) opSeReg() {
 
 }
 
-func (m *Machine) opLd() {
-
+func (m *Machine) opLdVx() {
+    reg := (m.opcode & 0x0F00) >> 8 
+    val := m.opcode & 0x00FF
+    
+    m.registers[reg] = uint8(val)
+    
+    m.pc += 2
 }
 
 func (m *Machine) opAdd() {
