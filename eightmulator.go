@@ -10,8 +10,8 @@ func main() {
 	machine := createMachine()
 	machine.loadRom("./INVADERS")
 
-	for {
-		opcode := machine.fetchOpcode()
-		machine.handleOpcode(opcode)
-	}
+	//for {
+	opcode := machine.fetchOpcodeAt(0x225)
+	machine.handleOpcode(opcode)
+	//}
 }

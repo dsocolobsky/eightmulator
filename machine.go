@@ -8,6 +8,7 @@ import (
 type Machine struct {
 	memory [4096]uint8
 	pc     uint16
+	opcode uint16
 }
 
 func createMachine() *Machine {
@@ -31,10 +32,11 @@ func (m *Machine) fetchOpcodeAt(location uint16) uint16 {
 	hi := m.memory[location]
 	lo := m.memory[location+1]
 
-	//fmt.Printf("%x\n", hi)
-	//fmt.Printf("%x\n", lo)
+	fmt.Printf("hi: %x\n", hi)
+	fmt.Printf("lo: %x\n", lo)
 
 	opcode = uint16(hi)<<8 | uint16(lo)
+	m.opcode = opcode
 	fmt.Printf("OPCODE: %x\n", opcode)
 
 	return opcode
@@ -54,7 +56,6 @@ func (m *Machine) handleOpcode(opcode uint16) {
 	}
 
 	// 0x1 -> 0xD (not 0x8) Cases
-	fmt.Printf("this: %x | %x\n", opcode, opcode&0xF000)
 	switch opcode & 0xF000 {
 	case 0x1000:
 		m.opJmp()
@@ -122,6 +123,7 @@ func (m *Machine) handleOpcode(opcode uint16) {
 		return
 	}
 
+	// ExAA Cases
 	switch opcode & 0xF0FF {
 	case 0xE09E:
 		m.opSkp()
@@ -131,6 +133,7 @@ func (m *Machine) handleOpcode(opcode uint16) {
 		return
 	}
 
+	// FxAA Cases
 	if opcode&0xF000 == 0xF000 {
 		switch opcode & 0xF0FF {
 		case 0xF007:

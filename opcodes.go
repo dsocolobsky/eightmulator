@@ -17,7 +17,8 @@ func (m *Machine) opRet() {
 // 0x1 -> 0x7 Cases
 
 func (m *Machine) opJmp() {
-	fmt.Println("JMP")
+	m.pc = m.opcode & 0x0FFF
+	fmt.Printf("JMP %x\n", m.pc)
 }
 
 func (m *Machine) opCall() {
